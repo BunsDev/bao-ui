@@ -28,23 +28,33 @@ const VotingList: React.FC = () => {
 				<div className='flex w-full flex-col'>
 					<div className='flex w-full flex-row items-center'>
 						<div className={`mx-auto my-0 flex basis-[20%] flex-col text-center`}>
-							<Typography variant='xs' className='flex w-full flex-col px-2 pb-0 text-left'>
+							<Typography variant='xs' className='flex w-full flex-col px-2 pb-0 text-left text-text-200'>
+								Gauge Name
+							</Typography>
+						</div>
+						<div className={`mx-auto my-0 flex basis-[40%] flex-col text-center `}>
+							<Typography variant='xs' className='flex w-full flex-col px-2 pb-0 text-center text-text-200'>
 								{' '}
 							</Typography>
 						</div>
-						<div className={`mx-auto my-0 flex basis-[50%] flex-col text-center `}>
-							<Typography variant='xs' className='flex w-full flex-col px-2 pb-0 text-center'>
-								{' '}
+						<div className={`mx-auto my-0 flex basis-[10%] flex-col text-left`}>
+							<Typography variant='xs' className='flex w-full flex-col px-2 pb-0 text-right text-text-200'>
+								Current Weight
 							</Typography>
 						</div>
-						<div className={`mx-auto my-0 flex basis-[15%] flex-col text-left`}>
-							<Typography variant='xs' className='flex w-full flex-col px-2 pb-0 text-center'>
-								Weight
+						<div className={`mx-auto my-0 flex basis-[10%] flex-col text-left`}>
+							<Typography variant='xs' className='flex w-full flex-col px-2 pb-0 text-right text-text-200'>
+								Current APR
 							</Typography>
 						</div>
-						<div className={`mx-auto my-0 flex basis-[15%] flex-col text-left`}>
-							<Typography variant='xs' className='flex w-full flex-col px-2 pb-0 text-center'>
-								APR
+						<div className={`mx-auto my-0 flex basis-[10%] flex-col text-left`}>
+							<Typography variant='xs' className='flex w-full flex-col px-2 pb-0 text-right text-text-200'>
+								Projected Weight
+							</Typography>
+						</div>
+						<div className={`mx-auto my-0 flex basis-[10%] flex-col text-left`}>
+							<Typography variant='xs' className='flex w-full flex-col px-2 pb-0 text-right text-text-200'>
+								Projected APR
 							</Typography>
 						</div>
 					</div>
@@ -124,7 +134,7 @@ const VotingListItem: React.FC<VotingListItemProps> = ({ gauge }) => {
 							</span>
 						</div>
 					</div>
-					<div className={`mx-auto my-0 flex basis-[50%] flex-col text-left`}>
+					<div className={`mx-auto my-0 flex basis-[40%] flex-col text-left`}>
 						<div className='flex w-full items-center justify-center gap-2 rounded-md bg-primary-100'>
 							<Slider
 								max={
@@ -175,65 +185,30 @@ const VotingListItem: React.FC<VotingListItemProps> = ({ gauge }) => {
 							<Button size='xs'>Vote</Button>
 						</div>
 					</div>
-
-					<div className='mx-auto my-0 flex basis-[15%] flex-col'>
-						<div className='mx-auto my-0 flex flex-row'>
-							<div className='mx-auto my-0 flex w-[50%] flex-col text-right'>
-								<Typography variant='sm' className='ml-2 inline-block text-text-200'>
-									Current:
-								</Typography>
-							</div>
-
-							<div className='mx-auto my-0 flex flex-col text-left'>
-								<Typography variant='sm' className='ml-2 inline-block font-bold'>
-									{getDisplayBalance(currentWeight.mul(100), 18, 2)}%
-								</Typography>
-							</div>
-						</div>
-
-						<div className='mx-auto my-0 flex flex-row'>
-							<div className='mx-auto my-0 flex flex-col text-right'>
-								<Typography variant='sm' className='ml-2 inline-block text-text-200'>
-									Future:
-								</Typography>
-							</div>
-
-							<div className='mx-auto my-0 flex flex-col text-left'>
-								<Typography variant='sm' className='ml-2 inline-block text-text-400'>
-									{getDisplayBalance(futureWeight.mul(100), 18, 2)}%
-								</Typography>
-							</div>
-						</div>
+					<div className='mx-auto my-0 flex basis-[10%] flex-col text-right'>
+						<Typography variant='base' className='ml-2 inline-block'>
+							{getDisplayBalance(currentWeight.mul(100), 18, 2)}%
+						</Typography>
 					</div>
-					<div className='mx-auto my-0 flex basis-[15%] flex-col'>
-						<div className='mx-auto my-0 flex flex-row'>
-							<div className='mx-auto my-0 flex w-[50%] flex-col text-right'>
-								<Typography variant='sm' className='ml-2 inline-block text-text-200'>
-									Current:
-								</Typography>
-							</div>
-
-							<div className='mx-auto my-0 flex flex-col text-left'>
-								<Typography variant='sm' className='ml-2 inline-block font-bold'>
+					<div className='mx-auto my-0 flex basis-[10%] flex-col text-right'>
+						<Typography variant='base' className='ml-2 inline-block'>
+							{getDisplayBalance(futureWeight.mul(100), 18, 2)}%
+						</Typography>
+					</div>
+					{isDesktop && (
+						<>
+							<div className='mx-auto my-0 flex basis-[10%] flex-col text-right'>
+								<Typography variant='base' className='ml-2 inline-block'>
 									{getDisplayBalance(currentAPR)}%
 								</Typography>
 							</div>
-						</div>
-
-						<div className='mx-auto my-0 flex flex-row'>
-							<div className='mx-auto my-0 flex flex-col text-right'>
-								<Typography variant='sm' className='ml-2 inline-block text-text-200'>
-									Future:
-								</Typography>
-							</div>
-
-							<div className='mx-auto my-0 flex flex-col text-left'>
-								<Typography variant='sm' className='ml-2 inline-block text-text-400'>
+							<div className='mx-auto my-0 flex basis-[10%] flex-col text-right'>
+								<Typography variant='base' className='ml-2 inline-block'>
 									{getDisplayBalance(futureAPR)}%
 								</Typography>
 							</div>
-						</div>
-					</div>
+						</>
+					)}
 				</div>
 			</div>
 		</>
@@ -249,24 +224,26 @@ const VotingDashboard: React.FC = () => {
 				Voting Dashboard
 			</Typography>
 			<div className='my-2 rounded border border-primary-300 bg-primary-100 bg-opacity-80 p-4'>
-				<div className={`grid w-full grid-flow-col ${isDesktop ? 'grid-rows-1 gap-4' : 'grid-rows-3 gap-2'} mb-2 justify-evenly`}>
+				<div className={`grid w-full grid-flow-col ${isDesktop ? 'grid-rows-1 gap-4' : 'grid-rows-3 gap-2'} justify-evenly`}>
 					<div className='items-center justify-center text-center'>
 						<div className='text-center'>
 							<Typography variant='xs' className='text-text-200'>
 								Voting Period Ends
 							</Typography>
 						</div>
-						<div className='text-base'>
+						<div className='text-lg font-bold'>
 							<CountdownTimer />
 						</div>
 					</div>
 					<div className='items-center justify-center text-center'>
 						<div className='text-center'>
 							<Typography variant='xs' className='text-text-200'>
-								Your Total Power Allocated
+								Your Voting Power Allocated
 							</Typography>
 						</div>
-						<Typography variant='base'>{getDisplayBalance(votingPowerAllocated)}%</Typography>
+						<Typography variant='lg' className='font-bold'>
+							{getDisplayBalance(votingPowerAllocated)}%
+						</Typography>
 					</div>
 				</div>
 				<VotingList />
